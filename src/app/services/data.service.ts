@@ -17,7 +17,7 @@ export class DataService {
   constructor() {
     this.supabase = createClient(
       environment.supabaseUrl,
-      environment.supabaseUrl
+      environment.supabaseKey
     );
   }
 
@@ -26,7 +26,7 @@ export class DataService {
   }
 
   async getBoards() {
-    const boards = await this.supabase.from(USER_BOARDS_TABLE).select('*');
+    const boards = await this.supabase.from(USER_BOARDS_TABLE).select('boards:board_id(*)');
     return boards.data || [];
   }
 }
